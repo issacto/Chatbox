@@ -1,0 +1,46 @@
+
+#scrollbase{
+-fx-min-width:100;
+-fx-min-height:400;
+
+}
+#scrollbase .viewport {
+-fx-background-image: url("backgroundColor.jpg");
+ }
+#centre{
+-fx-min-width:400 ;
+-fx-min-height:500 ;
+}
+#left{
+-fx-min-width:100 ;
+-fx-min-height:400 ;
+-fx-background-color: black;
+
+
+}
+#top{
+-fx-min-width:500 ;
+-fx-min-height:30 ;
+-fx-background-color: black;
+
+}
+#bottom{
+-fx-min-width:500 ;
+-fx-min-height:30 ;
+-fx-background-color: black;
+
+}
+
+#yourProfileCircle{
+-fx-fill:yellow;
+}
+#textLabel{
+   -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-text-fill: green;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+
+}
+#
+
