@@ -35,8 +35,18 @@ public class Server
 
             System.out.println("Creating a new handler for this client...");
 
+
             // Create a new handler object for handling this request.
-            ClientHandler mtch = new ClientHandler(s,"client "+ i, dis, dos);
+            ClientHandler mtch = new ClientHandler(s, dis, dos);
+
+            for (ClientHandler mc : Server.ar) {
+                mtch.output.println("INNNNN-"+ mc.name);
+                if (mc.imageString!=null){
+                    mtch.output.println(mc.imageString);
+                }
+            }
+
+            System.out.println("Name is " +mtch.name);
 
             // Create a new Thread with this object.
             Thread t = new Thread(mtch);
@@ -49,32 +59,29 @@ public class Server
             // start the thread.
             t.start();
 
-            // increment i for new client.
-            // i is used for naming only, and can be replaced
-            // by any naming scheme
             i++;
+            }
 
-        }
+
     }
 }
 
 // ClientHandler class
 class ClientHandler implements Runnable {
-    Scanner scn = new Scanner(System.in);
-    private String name;
-    private PrintWriter output;
+    public String name;
+    public PrintWriter output;
+    public String imageString;
     final Scanner dis;
     Socket s;
     boolean isloggedin;
 
     // constructor
-    public ClientHandler(Socket s, String name,
-                         Scanner dis, PrintWriter dos) {
+    public ClientHandler(Socket s,Scanner dis, PrintWriter dos) {
         this.dis = dis;
-        output = new PrintWriter(dos, true);
-        this.name = name;
+        this.output = new PrintWriter(dos, true);
         this.s = s;
         this.isloggedin = true;
+        imageString = null;
     }
 
     @Override
@@ -95,22 +102,40 @@ class ClientHandler implements Runnable {
                         break;
                     }
                     // break the string into message and recipient part
-                    StringTokenizer st = new StringTokenizer(msg, "#");
-                    String MsgToSend = st.nextToken();
-                    String recipient = st.nextToken();
-
-
-
-                    for (ClientHandler mc : Server.ar) {
-                        // if the recipient is found, write on its
-                        // output stream
-
-
-                        if (mc.name.equals(recipient) && mc.isloggedin == true) {
-                            mc.output.println(this.name + " : " + MsgToSend);
-                            break;
+                    if( msg.startsWith("SENDMESSAGE//")) {
+                        String message = msg.substring(13);
+                        String []senderList = message.split(";;;;;;;;;;;;;;;;;;;;;;;;;;;");
+                        String recipient = senderList[0];
+                        String MsgToSend = senderList[1];
+                        for (ClientHandler mc : Server.ar) {
+                            if (mc.name.equals(recipient) && mc.isloggedin == true) {
+                                mc.output.println("NOTHERE"+ this.name+";;;;;;;;;;;;;;;;;;;;;;;;;;;"+MsgToSend);
+                                break;
+                            }
                         }
                     }
+                    if(msg.startsWith("INNNNN-")){
+                        String[] parts = msg.split("-");// 004
+                        String part2 = parts[1];
+                        this.name =part2;
+                        for (ClientHandler mc : Server.ar) {
+                            if (mc.name!=this.name) {
+                                mc.output.println(msg);
+                            }
+                        }
+                    }
+                    else{
+                        String[] parts = msg.split("//////////////////////////");
+                        String part1 = parts[0];
+                        imageString = msg;
+                        for (ClientHandler mc : Server.ar) {
+                            if (mc.name!=part1) {
+                                mc.output.println(msg);
+                            }
+                        }
+                    }
+
+
                 }
             } catch (IOException e) {
 
