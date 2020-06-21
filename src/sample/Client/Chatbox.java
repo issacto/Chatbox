@@ -139,7 +139,7 @@ public class Chatbox extends Application {
         root.setCenter(main);
         root.setLeft(leftcolumn);
         root.setTop(top);
-        root.getStylesheets().addAll("sample/Client/stylesheet.css");
+        root.getStylesheets().addAll("stylesheet.css");
 
 
         Scene scene = new Scene(root);
@@ -228,7 +228,7 @@ public class Chatbox extends Application {
             newChatBox = new VBox();
             newChatBox.setId("centre");
             realBase.setPrefSize(100,100);
-            ImageView imageView = new ImageView("sample/Client/user.jpg");
+            ImageView imageView = new ImageView("user.jpg");
             imageView.setFitHeight(50);
             imageView.setFitWidth(50);
             Circle profile = new Circle(50);
