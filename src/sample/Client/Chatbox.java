@@ -37,7 +37,7 @@ public class Chatbox extends Application {
     static VBox CentreLeft = new VBox();
     static ScrollPane scrollbase = new ScrollPane();
 
-    public static VBox chatBox = new VBox();
+    public VBox chatBox = new VBox();
     TextField chatInput = new TextField();
     private static sample.Client client;
     HBox top = new HBox();
@@ -60,8 +60,6 @@ public class Chatbox extends Application {
         client = new sample.Client();
         //Centre
         chatBox.setId("chatbox");
-        //VBox userbox = new VBox();
-        //scrollbase.setContent(chatBox);
         scrollbase.setId("scrollbase");
         scrollbase.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollbase.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -72,7 +70,7 @@ public class Chatbox extends Application {
         });
         // when enter is pressed, send text that is in the input box, update chatbox as well
         chatInput.setOnKeyPressed(e -> {
-            if (e.getCode().equals(KeyCode.ENTER)) {
+            if (!capitalCities.isEmpty() & e.getCode().equals(KeyCode.ENTER)) {
                 updateChat("Me: " + chatInput.getText(), "me-texts");
 
                 client.send("SENDMESSAGE//"+nameToSend+";;;;;;;;;;;;;;;;;;;;;;;;;;;"+chatInput.getText());
@@ -157,17 +155,13 @@ public class Chatbox extends Application {
         String temName = text.split(":")[0];
         System.out.println(temName);
         for (String name:capitalCities.keySet()){
-            if(temName.equals("Me")){
-                capitalCities.get(nameToSend).newChatBox.getChildren().addAll(label);
-                break;
-            }
-            else if(temName.equals(name)){
+            if(temName.equals(name)){
                 capitalCities.get(name).newChatBox.getChildren().add(label);
                 break;
             }
 
 
-        }
+        }s
 
     }
 
