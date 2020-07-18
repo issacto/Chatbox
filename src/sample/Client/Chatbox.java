@@ -161,7 +161,7 @@ public class Chatbox extends Application {
             }
 
 
-        }s
+        }
 
     }
 
