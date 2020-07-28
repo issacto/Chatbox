@@ -24,7 +24,7 @@ base64Image = Base64.getEncoder().encodeToString(imageData);
 ```
 
 ## First sign in with a name
-<div style="text-align:center"><image src="https://github.com/issacto/Chatbox/blob/master/Images/Screenshot%202020-07-28%20at%206.46.17%20PM.png" width =400 ><div/>
+<p align="center"><image src="https://github.com/issacto/Chatbox/blob/master/Images/Screenshot%202020-07-28%20at%206.46.17%20PM.png" width =200 ><p/>
 
 <br/>
 ## Then change profile picture and chat@-@
