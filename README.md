@@ -1,5 +1,5 @@
-## Chatbox
-# Thr program is deployed on Amazon Web Service E2
+# Chatbox
+## The program is deployed on Amazon Web Service E2
 This chatbox is designed for multi-user chat.
 The program is mainly written in Java.
 Socket programming as well as Javafx techniques are practiced.
