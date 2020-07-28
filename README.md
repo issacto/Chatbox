@@ -1,4 +1,5 @@
-# Chatbox
+## Chatbox
+# Thr program is deployed on Amazon Web Service E2
 This chatbox is designed for multi-user chat.
 The program is mainly written in Java.
 Socket programming as well as Javafx techniques are practiced.
@@ -17,7 +18,4 @@ base64Image = Base64.getEncoder().encodeToString(imageData);
 ```
 
 
-***
-  The program is still under development. Hopefully, Google Dialogflow could be implemented in this program and the CSS could be refined later.
-  
-***
+
