@@ -1,46 +1,59 @@
 
+/* */
 #scrollbase{
--fx-min-width:100;
--fx-min-height:400;
+-fx-min-width:500;
+-fx-min-height:500;
+
 
 }
 #scrollbase .viewport {
--fx-background-image: url("backgroundColor.jpg");
- }
-#centre{
--fx-min-width:400 ;
+-fx-background-color: black;
+}
+
+#stackForScroll {
+-fx-min-width:150 ;
 -fx-min-height:500 ;
 }
-#left{
--fx-min-width:100 ;
--fx-min-height:400 ;
--fx-background-color: black;
+#scrollpropic{
+-fx-background:  #4682B4
+}
 
+#centre{
+-fx-min-width:650 ;
+-fx-min-height:550 ;
+}
+#left{
+-fx-min-width:150 ;
+-fx-min-height:500 ;
 
 }
 #top{
--fx-min-width:500 ;
--fx-min-height:30 ;
--fx-background-color: black;
+-fx-min-width:650;
+-fx-min-height:25 ;
+-fx-background-color: #708090;
 
 }
 #bottom{
--fx-min-width:500 ;
--fx-min-height:50 ;
--fx-background-color: black;
+-fx-min-width:650;
+-fx-min-height:25 ;
+-fx-background-color:#708090;
 
 }
 
 #yourProfileCircle{
 -fx-fill:yellow;
 }
-#textLabel{
-   -fx-font-size: 21px;
+#metextLabel{
+   -fx-font-size: 40px;
     -fx-font-weight: bold;
-    -fx-text-fill: #333333;
-    -fx-text-fill: green;
+    -fx-text-fill: #4682B4;
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
-
+}
+#otherstextLabel{
+   -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: red;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 #topleft{
 -fx-background-color: blue;

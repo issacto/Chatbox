@@ -23,6 +23,7 @@ public class Client
     private final PrintWriter output;
     private final sample.Chatbox.Command command = new sample.Chatbox.Command();
     Socket socket = new Socket("127.0.0.1", 1234);
+    
 
     public Client() throws IOException {
         // establish connection details of server socket
@@ -111,8 +112,5 @@ public class Client
     }
 
 }
-
-
-
 
 

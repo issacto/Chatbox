@@ -36,8 +36,9 @@ public class Chatbox extends Application {
     BorderPane main = new BorderPane();
     static VBox CentreLeft = new VBox();
     static ScrollPane scrollbase = new ScrollPane();
+    static ScrollPane scrollPropic = new ScrollPane();
 
-    public VBox chatBox = new VBox();
+    public static VBox chatBox = new VBox();
     TextField chatInput = new TextField();
     private static sample.Client client;
     HBox top = new HBox();
@@ -60,7 +61,11 @@ public class Chatbox extends Application {
         client = new sample.Client();
         //Centre
         chatBox.setId("chatbox");
+        //VBox userbox = new VBox();
+        //scrollbase.setContent(chatBox);
         scrollbase.setId("scrollbase");
+        scrollPropic.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPropic.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollbase.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollbase.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         chatInput.textProperty().addListener((observable, ov, nv) -> {
@@ -70,12 +75,15 @@ public class Chatbox extends Application {
         });
         // when enter is pressed, send text that is in the input box, update chatbox as well
         chatInput.setOnKeyPressed(e -> {
-            if (!capitalCities.isEmpty() & e.getCode().equals(KeyCode.ENTER)) {
-                updateChat("Me: " + chatInput.getText(), "me-texts");
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                String input = chatInput.getText();
+                if (!input.isEmpty()) {
+                    updateChat("Me: " + input, "me-texts", "Me");
 
-                client.send("SENDMESSAGE//"+nameToSend+";;;;;;;;;;;;;;;;;;;;;;;;;;;"+chatInput.getText());
-                chatInput.setText("");
-                scrollbase.setVvalue(1.0);
+                    client.send("SENDMESSAGE//" + nameToSend + ";;;;;;;;;;;;;;;;;;;;;;;;;;;" + chatInput.getText());
+                    chatInput.setText("");
+                    scrollbase.setVvalue(1.0);
+                }
             }
         });
 
@@ -88,9 +96,7 @@ public class Chatbox extends Application {
         //left Column
         CentreLeft.setSpacing(10);
         CentreLeft.setPadding(new Insets(10, 0,0,0));
-        BorderPane leftcolumn = new BorderPane();
-        leftcolumn.setId("left");
-
+        CentreLeft.setId("stackforScroll");
         clientUpdate("Yourself");
 
 
@@ -123,9 +129,10 @@ public class Chatbox extends Application {
 
 
         top.getChildren().add(fileButton);
+        top.setAlignment(Pos.CENTER);
         //leftcolumn.setTop(TopLeft);
-        leftcolumn.setCenter(CentreLeft);
-
+        scrollPropic.setContent(CentreLeft);
+        scrollPropic.setId("scrollpropic");
 
         //Top and Bottom
         top.setId("top");
@@ -135,7 +142,7 @@ public class Chatbox extends Application {
 
         root.setBottom(bottom);
         root.setCenter(main);
-        root.setLeft(leftcolumn);
+        root.setLeft(scrollPropic);
         root.setTop(top);
         root.getStylesheets().addAll("stylesheet.css");
 
@@ -149,17 +156,26 @@ public class Chatbox extends Application {
 
     }
 
-    public static void updateChat(String text, String style) {
+
+    public static void updateChat(String text, String style, String receiver) {
         Label label = new Label(text);
-        label.setId("textLabel");
+        if (receiver.equals("Me")) {
+            label.setId("metextLabel");
+        }
+        else{
+            label.setId("otherstextLabel");
+        }
         String temName = text.split(":")[0];
         System.out.println(temName);
         for (String name:capitalCities.keySet()){
-            if(temName.equals(name)){
+            if(temName.equals("Me")){
+                capitalCities.get(nameToSend).newChatBox.getChildren().addAll(label);
+                break;
+            }
+            else if(temName.equals(name)){
                 capitalCities.get(name).newChatBox.getChildren().add(label);
                 break;
             }
-
 
         }
 
@@ -171,6 +187,7 @@ public class Chatbox extends Application {
         BorderPane required = user.getPane();
         otherUserList.add(user);
         CentreLeft.getChildren().add(required);
+        scrollPropic.setContent(CentreLeft);
     }
 
 
@@ -179,7 +196,7 @@ public class Chatbox extends Application {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                updateChat(message, "me-style");
+                    updateChat(message, "me-style","Others");
                 }
             });
         }
@@ -204,6 +221,7 @@ public class Chatbox extends Application {
                             base.getChildren().add(newOtherProfilePic);
                             user.realBase.setCenter(base);
                             CentreLeft.getChildren().add(user.realBase);
+                            scrollPropic.setContent(CentreLeft);
                             break;
                         }
                     }
@@ -220,8 +238,8 @@ public class Chatbox extends Application {
         public User(String ClientName){
             name = ClientName;
             newChatBox = new VBox();
-            newChatBox.setId("centre");
-            realBase.setPrefSize(100,100);
+            //newChatBox.setId("centre");
+            realBase.setPrefSize(150,100);
             ImageView imageView = new ImageView("user.jpg");
             imageView.setFitHeight(50);
             imageView.setFitWidth(50);
@@ -231,6 +249,7 @@ public class Chatbox extends Application {
             realBase.setCenter(base);
             Button nametext = new Button(name);
             nametext.setOnAction((EventHandler<ActionEvent>) e -> {
+
                 scrollbase.setContent(newChatBox);
                 nameToSend=name;
                 System.out.println("name to send =" + nameToSend);
@@ -240,7 +259,7 @@ public class Chatbox extends Application {
 
         }
         public BorderPane getPane(){
-                return realBase;
+            return realBase;
         }
 
     }

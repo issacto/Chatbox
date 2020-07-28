@@ -87,7 +87,6 @@ class ClientHandler implements Runnable {
     @Override
     public void run() {
 
-        String received;
         while (true) {
             try {
                 while (dis.hasNextLine()) {
