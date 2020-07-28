@@ -27,5 +27,7 @@ base64Image = Base64.getEncoder().encodeToString(imageData);
 <p align="center"><image src="https://github.com/issacto/Chatbox/blob/master/Images/Screenshot%202020-07-28%20at%206.46.17%20PM.png" width =200 ><p/>
 
 <br/>
+
 ## Then change profile picture and chat@-@
-<image src="https://github.com/issacto/Chatbox/blob/master/Images/Screenshot%202020-07-28%20at%206.44.11%20PM.png" width=800>
+<br/>
+<p align="center"><image src="https://github.com/issacto/Chatbox/blob/master/Images/Screenshot%202020-07-28%20at%206.44.11%20PM.png" width=700></p>
