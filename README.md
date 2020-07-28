@@ -11,9 +11,6 @@ Type these commands on terminal after dragging these files on laptop
 java -jar Client.jar
 java -jar Server.jar
 ```
-<br/>
-<br>
-<br>
 
 ## Socket Programming to connect the users
 ```Java
