@@ -23,5 +23,8 @@ base64 Image conversion so that other users can get the value of the image throu
 base64Image = Base64.getEncoder().encodeToString(imageData);
 ```
 
+##First sign in with a name
+<image src="https://github.com/issacto/Chatbox/blob/master/Images/Screenshot%202020-07-28%20at%206.46.17%20PM.png" width =400 >
 
-
+##Then change profile picture and chat@-@
+<image src="https://github.com/issacto/Chatbox/blob/master/Images/Screenshot%202020-07-28%20at%206.44.11%20PM.png">
